@@ -62,8 +62,21 @@ const Header = () => {
         <img
           src={image}
           alt=""
-          className=" h-[100px] md:h-[175px] object-contain pt-2 md:pt-4 "
+          className=" h-[105px] md:h-[175px] object-contain pt-2 md:pt-4 "
         />
+
+        <h3
+          onClick={() => {
+            if (!localStorage.getItem("token")) {
+              navigate("/auth");
+            } else {
+              navigate("/cart");
+            }
+          }}
+          className=" md: hidden cursor-pointer hover:text-pink-600 "
+        >
+          Cart
+        </h3>
 
         <div className="relative hidden md:block">
           <input
