@@ -62,12 +62,12 @@ const Header = () => {
         <img
           src={image}
           alt=""
-          className=" h-[90px] md:h-[175px] object-contain pt-2 md:pt-4 "
+          className=" h-[100px] md:h-[175px] object-contain pt-2 md:pt-4 "
         />
 
         <div className="relative hidden md:block">
           <input
-            className="border border-black rounded px-4 py-2 w-[575px]"
+            className="border border-black rounded px-4 py-1 w-[575px]"
             type="text"
             placeholder="Search products..."
             value={query}
