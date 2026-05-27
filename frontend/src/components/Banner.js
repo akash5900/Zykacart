@@ -29,18 +29,7 @@ function Banner() {
   }, [banners]);
 
   const handleBannerClick = () => {
-    // const link = banners[current].buttonLink;
-
-    // if (link === "/products-section") {
-    //   const section = document.getElementById("products-section");
-    //   if (section) {
-    //     section.scrollIntoView({ behavior: "smooth" });
-    //   } else {
-        navigate("/#products-section");
-    //   }
-    // } else {
-    //   navigate(link);
-    // }
+    navigate("/#products-section");
   };
 
   if (banners.length === 0) return null;
@@ -53,18 +42,18 @@ function Banner() {
         className="w-full max-w-[250px] md:max-w-[550px] h-auto object-contain"
       />
 
-      <div className="flex flex-col items-center md:items-start gap-2 md:gap-4 text-center md:text-left">
-        <h1 className="text-white font-bold text-sm md:text-4xl">
+      <div className="flex flex-col items-center md:items-start gap-1 md:gap-4 text-center md:text-left">
+        <h1 className="text-white font-bold text-xs md:text-4xl">
           {banners[current].title}
         </h1>
 
-        <h1 className="text-white font-bold text-sm md:text-4xl">
+        <h1 className="text-white font-bold text-xs md:text-4xl">
           {banners[current].subtitle}
         </h1>
 
         <button
           onClick={handleBannerClick}
-          className="border bg-white px-3 py-1 md:px-8 md:py-3 text-pink-950 text-sm md:text-xl rounded-lg"
+          className="border bg-white px-3 py-1 md:px-8 md:py-3 text-pink-950 text-xs md:text-xl rounded-lg"
         >
           {banners[current].buttonText}
         </button>
