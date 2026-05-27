@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className="block">
       <Banner />
-      <div className="hidden md:block">
+      <div className="">
         <Features />
       </div>
       <Category />
