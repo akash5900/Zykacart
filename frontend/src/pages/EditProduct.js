@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../api";
@@ -71,10 +72,7 @@ const EditProduct = () => {
 
   // ✅ ADD VARIANT (optional but useful)
   const addVariant = () => {
-    setVariants([
-      ...variants,
-      { size: "", color: "", price: "" },
-    ]);
+    setVariants([...variants, { size: "", color: "", price: "" }]);
   };
 
   const handleUpdate = async () => {
@@ -87,7 +85,7 @@ const EditProduct = () => {
 
       // ✅ CLEAN VARIANTS (important)
       const cleanVariants = variants.filter(
-        (v) => v.size && v.color && v.price
+        (v) => v.size && v.color && v.price,
       );
 
       data.append("variants", JSON.stringify(cleanVariants));
@@ -110,7 +108,6 @@ const EditProduct = () => {
   return (
     <div className="flex justify-center items-center px-3 ">
       <div className="border border-pink-800 w-[full] md:w-[480px] mt-[100px] md:mt-[50px] md:mb-[50px] min-h-[480px] flex flex-col items-center justify-center gap-[13px] rounded-[10px] md:pt-[20px] ">
-        
         <h1 className="text-xl md:text-3xl text-semibold text-pink-800 mb-5 pt-5">
           Edit Seller Product
         </h1>
