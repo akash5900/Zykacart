@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(
   cors({
-    origin: ["http://localhost:3002", "http://localhost:3001"],
+    origin: ["https://zykacart.vercel.app"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -29,5 +29,5 @@ app.use("/api/category", categoryrouter);
 app.use("/api/brand", brandrouter);
 app.use("/api/banner", bannerrouter);
 app.use("/api/cart", cartrouter);
-app.use("/api/seller", sellerrouter); 
+app.use("/api/seller", sellerrouter);
 module.exports = app;
