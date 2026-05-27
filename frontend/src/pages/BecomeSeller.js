@@ -108,7 +108,7 @@ const BecomeSeller = () => {
           >
             <input
               placeholder="Search Shop Address"
-              className="border w-[310px] md:w-[350px] bg-pink-100 border-pink-800 text-pink-800 rounded mb-3 p-2"
+              className="border w-[300px] md:w-[350px] bg-pink-100 border-pink-800 text-pink-800 rounded mb-3 p-2"
             />
           </Autocomplete>
         )}
