@@ -37,12 +37,12 @@ function BrandItem({ img, title, id }) {
   const navigate = useNavigate();
   return (
     <div
-      className="h-[180px] md:h-[300px] cursor-pointer"
+      className="h-[160px] md:h-[300px] cursor-pointer"
       onClick={() => navigate("/brand/" + id)}
     >
       <div className=" rounded-xl overflow-hidden border border-black ">
-        <div className=" w-[120px] h-[120px] md:w-[200px] md:h-[230px] bg-blue-100 flex items-center justify-center p-[10px] ">
-          <img src={img} alt={title} className="h-[130px] md:h-[260px] object-contain" />
+        <div className=" w-[100px] h-[100px] md:w-[200px] md:h-[230px] bg-blue-100 flex items-center justify-center p-[10px] ">
+          <img src={img} alt={title} className="h-[120px] md:h-[260px] object-contain" />
         </div>
 
         <div className="bg-blue-600 text-white text-center py-2 text-xs md:text-lg cursor-pointer">
