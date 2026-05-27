@@ -61,59 +61,66 @@ function EditBanner() {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Edit Banner</h2>
+    <div className="flex items-center justify-center h-auto">
+      <div className="border border-pink-800 w-[480px] h-[520px] flex flex-col items-center gap-[40px] rounded-[10px] mt-[30px]">
+        <h2 className="text-2xl font-semibold text-pink-800 mt-[30px]">
+          Edit Banner
+        </h2>
 
-      <form onSubmit={handleUpdate} className="space-y-4">
-        <input
-          className="border p-2 w-full"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Title"
-        />
-
-        <input
-          className="border p-2 w-full"
-          value={subtitle}
-          onChange={(e) => setSubtitle(e.target.value)}
-          placeholder="Subtitle"
-        />
-
-        <input
-          className="border p-2 w-full"
-          value={buttonText}
-          onChange={(e) => setButtonText(e.target.value)}
-          placeholder="Button Text"
-        />
-
-        <input
-          className="border p-2 w-full"
-          value={buttonLink}
-          onChange={(e) => setButtonLink(e.target.value)}
-          placeholder="Button Link"
-        />
-
-        <select
-          className="border p-2 w-full"
-          value={position}
-          onChange={(e) => setPosition(e.target.value)}
+        <form
+          onSubmit={handleUpdate}
+          className="flex flex-col items-center gap-[15px]"
         >
-          <option value="home">Home Top Banner</option>
-          <option value="middle">Middle Banner</option>
-          <option value="offer">Offer Banner</option>
-          <option value="category">Category Page Banner</option>
-        </select>
+          <input
+            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
+          />
 
-        <input
-          type="file"
-          className="border p-2 w-full"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
+          <input
+            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            value={subtitle}
+            onChange={(e) => setSubtitle(e.target.value)}
+            placeholder="Subtitle"
+          />
 
-        <button className="bg-green-500 text-white px-4 py-2">
-          Update Banner
-        </button>
-      </form>
+          <input
+            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            value={buttonText}
+            onChange={(e) => setButtonText(e.target.value)}
+            placeholder="Button Text"
+          />
+
+          <input
+            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            value={buttonLink}
+            onChange={(e) => setButtonLink(e.target.value)}
+            placeholder="Button Link"
+          />
+
+          <select
+            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+          >
+            <option value="home">Home Top Banner</option>
+            <option value="middle">Middle Banner</option>
+            <option value="offer">Offer Banner</option>
+            <option value="category">Category Page Banner</option>
+          </select>
+
+          <input
+            type="file"
+            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+
+          <button className="border border-pink-800 px-6 py-3 rounded-[10px] text-pink-800 hover:bg-gray-200">
+            Update Banner
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

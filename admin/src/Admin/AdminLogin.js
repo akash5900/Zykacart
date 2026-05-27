@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import API from "./api";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -50,12 +52,20 @@ function AdminLogin() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="border border-pink-800 p-3 w-[360px] rounded-[10px] text-pink-800 bg-pink-50"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="relative w-[360px]">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="border border-pink-800 p-3 w-[360px] rounded-[10px] text-pink-800 bg-pink-50"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-4 cursor-pointer text-pink-800"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
 
           <button className="border border-pink-800 px-6 py-3 rounded-[10px] text-pink-800 hover:bg-gray-200">
             Login

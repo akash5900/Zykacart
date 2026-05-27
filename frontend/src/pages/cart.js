@@ -32,14 +32,23 @@ function Cart() {
   }, []);
 
   const total = cart.reduce((sum, item) => {
-    const price = item?.product?.price || 0;
+    const price =
+      item.price ||
+      item?.product?.variants?.find(
+        (v) => v.size === item.size && v.color === item.color,
+      )?.price ||
+      item?.product?.variants?.[0]?.price ||
+      item?.product?.price ||
+      0;
+
     const qty = item?.quantity || 0;
+
     return sum + price * qty;
   }, 0);
 
   return (
-    <div className=" p-4 md:p-10">
-      <h1 className="text-2xl text-pink-600 font-bold mb-5 ">My Cart</h1>
+    <div className="p-4 md:px-16 md:py-6">
+      <h1 className="text-2xl text-pink-600 font-bold mb-5">My Cart</h1>
 
       {!localStorage.getItem("token") ? (
         <div>
@@ -52,7 +61,7 @@ function Cart() {
           </button>
         </div>
       ) : cart.length === 0 ? (
-        <p className="text-xl font-semibold text-pink-800 flex justify-center mt-[150px] ">
+        <p className="text-xl font-semibold text-pink-800 flex justify-center mt-[150px]">
           Your Cart Is Empty
         </p>
       ) : (
@@ -61,37 +70,51 @@ function Cart() {
             if (!item.product) return null;
 
             return (
-              <div key={item._id} className="flex gap-5 border p-3 mb-3">
+              <div
+                key={item._id}
+                className="flex gap-5 border p-3 mb-3 items-center"
+              >
                 <img
-                  src={item.product.image}
+                  src={item.product.images?.[0] || item.product.image}
                   alt=""
                   className="w-24 h-24 object-cover"
                 />
 
                 <div className="text-pink-800">
-                  <h2>{item.product.name}</h2>
-                  <p>₹{item.product.price}</p>
-                  <p>Qty: {item.quantity}</p>
+                  <h2 className="text-lg font-semibold">{item.product.name}</h2>
 
-                  <button
-                    onClick={() => navigate("/checkout")}
-                    className="bg-pink-600 text-white px-5 py-2 mt-3"
-                  >
-                    Checkout
-                  </button>
+                  <p className="text-md mt-1">
+                    ₹
+                    {item.price ||
+                      item?.product?.variants?.[0]?.price ||
+                      item?.product?.price}
+                  </p>
 
-                  <button
-                    onClick={() => removeItem(item._id)}
-                    className="bg-red-500 text-white px-3 py-1 mt-2"
-                  >
-                    Remove
-                  </button>
+                  <p className="text-sm mt-1">Qty: {item.quantity}</p>
+
+                  <div className="flex gap-2 mt-3">
+                    <button
+                      onClick={() => navigate("/checkout")}
+                      className="bg-pink-600 text-white px-5 py-2"
+                    >
+                      Checkout
+                    </button>
+
+                    <button
+                      onClick={() => removeItem(item._id)}
+                      className="bg-red-500 text-white px-3 py-2"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </div>
             );
           })}
 
-          <h2 className="text-xl text-pink-600 font-bold mt-5">Total: ₹{total}</h2>
+          <h2 className="text-xl text-pink-600 font-bold mt-5">
+            Total: ₹{total}
+          </h2>
         </>
       )}
     </div>

@@ -78,7 +78,11 @@ async function updateCategory(req, res) {
       updateData.image = result.url;
     }
 
-    const updatedCategory = await CategoryModel.findByIdAndUpdate(id, updateData, { new: true });
+    const updatedCategory = await CategoryModel.findByIdAndUpdate(
+      id,
+      updateData,
+      { new: true },
+    );
 
     res.status(200).json({
       message: " Category updated successfully ",
@@ -99,4 +103,10 @@ async function getSingleCategory(req, res) {
   }
 }
 
-module.exports = { createCategory, getCategory, deleteCategory, updateCategory, getSingleCategory };
+module.exports = {
+  createCategory,
+  getCategory,
+  deleteCategory,
+  updateCategory,
+  getSingleCategory,
+};

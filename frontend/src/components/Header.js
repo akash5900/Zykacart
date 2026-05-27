@@ -202,7 +202,9 @@ const Header = () => {
 
       {menuOpen && (
         <div className="md:hidden flex flex-col justify-center text-[10px] text-pink-800 ">
-          <h3 className="cursor-pointer hover:text-pink-600" onClick={() => {
+          <h3
+            className="cursor-pointer hover:text-pink-600"
+            onClick={() => {
               const token = localStorage.getItem("token");
               const user = JSON.parse(localStorage.getItem("user"));
 
@@ -219,7 +221,8 @@ const Header = () => {
               } else if (user?.role === "admin") {
                 alert("Admin cannot become seller");
               }
-            }}>
+            }}
+          >
             Become a Seller
           </h3>
           <h3

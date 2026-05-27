@@ -12,12 +12,20 @@ router.post("/admin-signup", usercontroller.adminSignup);
 
 router.post("/login", usercontroller.loginUser);
 
+router.post("/address", authmiddleware.authuser, usercontroller.saveAddress);
+
+router.get("/address", authmiddleware.authuser, usercontroller.getAddress);
+
 router.get("/profile", authmiddleware.authuser, (req, res) => {
-    res.json({
-        user: req.user,
-    });
+  res.json({
+    user: req.user,
+  });
 });
 
-router.put("/become-seller", authmiddleware.authuser, usercontroller.becomeSeller);
+router.put(
+  "/become-seller",
+  authmiddleware.authuser,
+  usercontroller.becomeSeller,
+);
 
 module.exports = router;

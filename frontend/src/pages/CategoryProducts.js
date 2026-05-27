@@ -7,8 +7,12 @@ function CategoryProducts() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-      axios.get(`http://localhost:3000/api/product/category/${id}`)
-      .then((res) => setProducts(res.data))
+    axios
+      .get(`http://localhost:3000/api/product/category/${id}`)
+      .then((res) => {
+        console.log("CATEGORY DATA:", res.data); // debug
+        setProducts(res.data);
+      })
       .catch((err) => console.log(err));
   }, [id]);
 
@@ -19,25 +23,45 @@ function CategoryProducts() {
       </h1>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-10">
-        {products.map((product) => (
-          <div key={product._id} className="border p-3 bg-gray-50 rounded">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-32 md:h-40 object-cover"
-            />
+        {products.map((product) => {
+          // ✅ SAFE PRICE
+          const price = product?.variants?.[0]?.price || product?.price || 0;
 
-            <h2 className="text-sm md:text-lg text-pink-800 font-semibold mt-2">
-              {product.name}
-            </h2>
+          // ✅ SAFE IMAGE (MAIN FIX)
+          let image = "https://via.placeholder.com/200";
 
-            <p className="text-gray-600">₹{product.price}</p>
+          if (
+            product.images &&
+            Array.isArray(product.images) &&
+            product.images.length > 0
+          ) {
+            image = product.images[0];
+          } else if (product.image && product.image !== "") {
+            image = product.image;
+          }
 
-            <Link to={`/product/${product._id}`}>
-              <button className="bg-pink-500 text-white w-full md:w-auto px-3 py-1 mt-2">View Details</button>
-            </Link>
-          </div>
-        ))}
+          return (
+            <div key={product._id} className="border p-3 bg-gray-50 rounded">
+              <img
+                src={image}
+                alt={product.name}
+                className="w-full h-32 md:h-40 object-cover"
+              />
+
+              <h2 className="text-sm md:text-lg text-pink-800 font-semibold mt-2">
+                {product.name}
+              </h2>
+
+              <p className="text-gray-600">₹{price}</p>
+
+              <Link to={`/product/${product._id}`}>
+                <button className="bg-pink-500 text-white w-full md:w-auto px-3 py-1 mt-2">
+                  View Details
+                </button>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

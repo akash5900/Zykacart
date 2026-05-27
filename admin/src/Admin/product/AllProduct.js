@@ -61,14 +61,14 @@ function AllProduct() {
             <tr key={product._id} className="border text-center text-pink-800">
               <td className="p-2">
                 <img
-                  src={product.image}
+                  src={product.images?.[0] || product.image}
                   alt=""
                   className="w-16 h-16 object-cover mx-auto"
                 />
               </td>
 
               <td className="p-2">{product.name}</td>
-              <td className="p-2">₹{product.price}</td>
+              <td className="p-2">₹{product.variants?.[0]?.price || product.price}</td>
               <td className="p-2">{product.category?.name}</td>
               <td className="p-2">{product.brand?.name}</td>
 

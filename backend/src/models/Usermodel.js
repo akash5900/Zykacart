@@ -42,10 +42,11 @@ const userSchema = new mongoose.Schema(
     },
 
     address: {
-      street: String,
+      fullName: String,
+      mobile: String,
+      pincode: Number,
       city: String,
       state: String,
-      pincode: Number,
       country: String,
     },
 

@@ -1,0 +1,2 @@
+1. add variations in product detail.
+2. set the page of product detail.

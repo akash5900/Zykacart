@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import API from "../api";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
 function Checkout() {
   const [cart, setCart] = useState([]);
@@ -14,9 +14,18 @@ function Checkout() {
     country: "",
   });
 
+  const [useSaved, setUseSaved] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const buyNowItem = location.state;
+
+  const autocompleteRef = useRef();
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyDmd9BlEBu_b3mEsLzWKfIZpl8dY1HhzKk",
+    libraries: ["places"],
+  });
 
   useEffect(() => {
     if (buyNowItem) {
@@ -24,25 +33,104 @@ function Checkout() {
         {
           product: buyNowItem.product,
           quantity: buyNowItem.quantity,
+          size: buyNowItem.size,
+          color: buyNowItem.color,
+          price: buyNowItem.price,
         },
       ]);
     } else {
       API.get("/cart/my").then((res) => setCart(res.data));
     }
-  }, [navigate, buyNowItem]);
+  }, [buyNowItem]);
+
+  useEffect(() => {
+    API.get("/user/address")
+      .then((res) => {
+        if (res.data.address) {
+          setAddress(res.data.address);
+          setUseSaved(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const total = cart.reduce((sum, item) => {
     if (!item.product) return sum;
-    return sum + item.product.price * item.quantity;
+
+    const price =
+      item.price ||
+      item?.product?.variants?.find(
+        (v) => v.size === item.size && v.color === item.color,
+      )?.price ||
+      item?.product?.variants?.[0]?.price ||
+      item?.product?.price ||
+      0;
+
+    return sum + price * item.quantity;
   }, 0);
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
 
+  const onPlaceChanged = () => {
+    const place = autocompleteRef.current.getPlace();
+
+    if (!place || !place.address_components) {
+      alert("Select address from suggestions");
+      return;
+    }
+
+    let city = "";
+    let state = "";
+    let country = "";
+    let pincode = "";
+
+    place.address_components.forEach((comp) => {
+      const types = comp.types;
+
+      if (types.includes("locality")) city = comp.long_name;
+      if (types.includes("administrative_area_level_1")) state = comp.long_name;
+      if (types.includes("country")) country = comp.long_name;
+      if (types.includes("postal_code")) pincode = comp.long_name;
+    });
+
+    setAddress((prev) => ({
+      ...prev,
+      city,
+      state,
+      country,
+      pincode,
+    }));
+  };
+
+  const validateAddress = () => {
+    const { fullName, mobile, pincode, city, state, country } = address;
+
+    if (!fullName || !mobile || !pincode || !city || !state || !country) {
+      alert("Fill all fields");
+      return false;
+    }
+
+    if (!/^[6-9]\d{9}$/.test(mobile)) {
+      alert("Invalid mobile");
+      return false;
+    }
+
+    if (!/^[1-9][0-9]{5}$/.test(pincode)) {
+      alert("Invalid pincode");
+      return false;
+    }
+
+    return true;
+  };
+
   const payNow = async () => {
     if (!validateAddress()) return;
+
     try {
+      await API.post("/user/address", address);
+
       const { data } = await API.post("/order/razorpay-order", {
         amount: total,
       });
@@ -54,15 +142,17 @@ function Checkout() {
         order_id: data.id,
 
         handler: async function (response) {
-          console.log("PAYMENT SUCCESS:", response);
-
-          const products = cart
-            .filter((item) => item.product)
-            .map((item) => ({
-              product: item.product._id,
-              quantity: item.quantity,
-              price: item.product.price,
-            }));
+          const products = cart.map((item) => ({
+            product: item.product._id,
+            quantity: item.quantity,
+            price:
+              item.price ||
+              item?.product?.variants?.find(
+                (v) => v.size === item.size && v.color === item.color,
+              )?.price ||
+              item?.product?.variants?.[0]?.price ||
+              item?.product?.price,
+          }));
 
           await API.post("/order/verify-payment", {
             razorpay_order_id: response.razorpay_order_id,
@@ -76,37 +166,31 @@ function Checkout() {
           alert("Payment successful");
           navigate("/my-orders");
         },
-
-        modal: {
-          ondismiss: function () {
-            alert("Payment popup closed");
-          },
-        },
       };
 
-      const rzp = new window.Razorpay(options);
-
-      rzp.on("payment.failed", function (response) {
-        console.log("PAYMENT FAILED:", response.error);
-        alert("Payment Failed: " + response.error.description);
-      });
-
-      rzp.open();
-    } catch (error) {
-      console.log(error);
+      new window.Razorpay(options).open();
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const placeOrderCOD = async () => {
     if (!validateAddress()) return;
+
     try {
-      const products = cart
-        .filter((item) => item.product)
-        .map((item) => ({
-          product: item.product._id,
-          quantity: item.quantity,
-          price: item.product.price,
-        }));
+      await API.post("/user/address", address);
+
+      const products = cart.map((item) => ({
+        product: item.product._id,
+        quantity: item.quantity,
+        price:
+          item.price ||
+          item?.product?.variants?.find(
+            (v) => v.size === item.size && v.color === item.color,
+          )?.price ||
+          item?.product?.variants?.[0]?.price ||
+          item?.product?.price,
+      }));
 
       await API.post("/order/create-order", {
         products,
@@ -115,89 +199,84 @@ function Checkout() {
         paymentMethod: "COD",
       });
 
-      alert("Order placed successfully");
+      alert("Order placed");
       navigate("/my-orders");
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
-  };
-
-  const validateAddress = () => {
-    const { fullName, mobile, pincode, city, state, country } = address;
-
-    if (!fullName || !mobile || !pincode || !city || !state || !country) {
-      alert("Please fill all address fields");
-      return false;
-    }
-
-    if (mobile.length !== 10) {
-      alert("Enter valid mobile number");
-      return false;
-    }
-
-    if (pincode.length !== 6) {
-      alert("Enter valid pincode");
-      return false;
-    }
-
-    return true;
   };
 
   return (
-    <div className="p-4 md:p-10">
-      <h1 className="text-xl md:text-2xl text-pink-600 font-bold mb-5">Checkout</h1>
+    <div className="p-6 md:px-16">
+      <h1 className="text-2xl text-pink-600 font-bold mb-4">Checkout</h1>
+      <h2 className="text-lg mb-4">Total: ₹{total}</h2>
 
-      <h2 className=" text-lg md:text-xl text-pink-900 mb-3">Total: ₹{total}</h2>
+      {useSaved && address.city && (
+        <div className="border p-4 mb-4 bg-green-50 rounded">
+          <h3 className="font-bold text-green-700">Saved Address</h3>
+          <p>{address.fullName}</p>
+          <p>{address.mobile}</p>
+          <p>
+            {address.city}, {address.state}, {address.country} -{" "}
+            {address.pincode}
+          </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <input
-          name="fullName"
-          placeholder="Full Name"
-          onChange={handleChange}
-          className="border border-pink-800 w-full md:w-auto text-pink-800 p-2 rounded"
-        />
-        <input
-          name="mobile"
-          placeholder="Mobile"
-          onChange={handleChange}
-          className="border p-2 border-pink-800 w-full md:w-auto text-pink-800 rounded"
-        />
-        <input
-          name="pincode"
-          placeholder="Pincode"
-          onChange={handleChange} 
-          className="border p-2 border-pink-800 w-full md:w-auto text-pink-800 rounded"
-        />
-        <input
-          name="city"
-          placeholder="City"
-          onChange={handleChange}
-          className="border p-2 border-pink-800 w-full md:w-auto text-pink-800 rounded"
-        />
-        <input
-          name="state"
-          placeholder="State"
-          onChange={handleChange} 
-          className="border p-2 border-pink-800 w-full md:w-auto text-pink-800 rounded"
-        />
-        <input
-          name="country"
-          placeholder="Country"
-          onChange={handleChange}
-          className="border p-2 border-pink-800 w-full md:w-auto text-pink-800 rounded"
-        />
-      </div>
+          <button
+            onClick={() => {
+              setUseSaved(false);
+            }}
+            className="text-blue-600 underline mt-2"
+          >
+            Change Address
+          </button>
+        </div>
+      )}
+
+      {!useSaved && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <input
+            name="fullName"
+            placeholder="Full Name"
+            onChange={handleChange}
+            className="border p-2"
+          />
+
+          <input
+            name="mobile"
+            placeholder="Mobile"
+            onChange={handleChange}
+            className="border p-2"
+          />
+
+          {isLoaded && (
+            <Autocomplete
+              onLoad={(ref) => (autocompleteRef.current = ref)}
+              onPlaceChanged={onPlaceChanged}
+            >
+              <input
+                placeholder="Search Address"
+                className="border p-2 col-span-2"
+              />
+            </Autocomplete>
+          )}
+
+          <input value={address.pincode} readOnly className="border p-2" />
+          <input value={address.city} readOnly className="border p-2" />
+          <input value={address.state} readOnly className="border p-2" />
+          <input value={address.country} readOnly className="border p-2" />
+        </div>
+      )}
 
       <button
         onClick={placeOrderCOD}
-        className="bg-pink-800 text-white w-full md:w-auto px-6 py-2 mt-5 md:mr-3"
+        className="bg-pink-600 text-white px-6 py-2 mt-5 mr-3"
       >
         Cash on Delivery
       </button>
 
       <button
         onClick={payNow}
-        className="bg-green-600 text-white w-full md:w-auto px-6 py-2 mt-3 md:mt-5"
+        className="bg-green-600 text-white px-6 py-2 mt-5"
       >
         Pay Online
       </button>

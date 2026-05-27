@@ -27,16 +27,16 @@ function Products() {
         {products.map((product) => (
           <div key={product._id} className="border p-3 bg-gray-50 rounded">
             <img
-              src={product.image}
+              src={product.images?.[0] || product.image}
               alt={product.name}
               className="w-full h-32 md:h-40 object-cover"
             />
 
-            <h2 className="text-sm md:text-lg text-pink-800 font-semibold mt-2">
+            <h2 className="text-sm md:text-lg text-black font-semibold mt-2">
               {product.name}
             </h2>
 
-            <p className="text-gray-600">₹{product.price}</p>
+            <p className="text-gray-600">₹{product.variants?.[0]?.price || product.price}</p>
 
             <Link
               to={`/product/${product._id}`}

@@ -36,7 +36,7 @@ async function getallBrands(req, res) {
     res.status(200).json(brands);
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
+  } 
 }
 
 async function deleteBrand(req, res) {

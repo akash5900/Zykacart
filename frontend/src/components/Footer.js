@@ -6,22 +6,37 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Footer = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [email, setEmail] = useState("");
 
   const handleSellerAccess = (path) => {
     if (!user) {
-      // not logged in
       navigate("/login");
     } else if (user.role === "seller") {
-      // seller allowed
       navigate(path);
     } else {
-      // not a seller
       navigate("/become-seller");
     }
+  };
+
+  const handleSubscribe = () => {
+    if (!email) {
+      alert("Please enter email");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Enter valid email");
+      return;
+    }
+
+    alert("Subscribed successfully ✅");
+
+    setEmail("");
   };
 
   return (
@@ -168,9 +183,14 @@ const Footer = () => {
           <input
             type="email"
             placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="px-4 py-2 border rounded-l-md outline-none w-full md:w-64"
           />
-          <button className="bg-pink-600 text-white px-4 py-2 rounded-r-md hover:bg-gray-800 transition">
+          <button
+            onClick={handleSubscribe}
+            className="bg-pink-600 text-white px-4 py-2 rounded-r-md hover:bg-gray-800 transition"
+          >
             Subscribe
           </button>
         </div>
@@ -178,7 +198,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="bg-gray-200 text-center py-4 text-sm">
-        © 2026 Zykacart | Developed by Akashdeep Singh
+        © 2026 Zykacart | Developed by Akashdeep Singh, Onkar Singh
       </div>
     </footer>
   );

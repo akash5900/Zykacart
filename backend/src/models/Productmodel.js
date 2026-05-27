@@ -1,10 +1,17 @@
 const mongoose = require("mongoose");
 
+const variantSchema = new mongoose.Schema({
+  size: String,
+  color: String,
+  price: Number,
+  stock: Number,
+});
+
 const productSchema = new mongoose.Schema({
   name: String,
   description: String,
-  price: Number,
-  image: String,
+  images: [String],
+  variants: [variantSchema],
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "category",
@@ -18,7 +25,7 @@ const productSchema = new mongoose.Schema({
   seller: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
-  }
+  },
 });
 
 const productModel = new mongoose.model("product", productSchema);

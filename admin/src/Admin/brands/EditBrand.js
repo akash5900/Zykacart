@@ -52,28 +52,33 @@ function EditBrand() {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Edit Brand</h2>
+    <div className="flex items-center justify-center h-auto">
+      <div className="border border-pink-800 w-[380px] h-[360px] flex flex-col items-center gap-[40px] rounded-[10px] mt-[100px] bg-gray-100">
+        <h2 className="text-2xl text-pink-800 mt-[50px]">Edit Brand</h2>
 
-      <form onSubmit={handleUpdate} className="space-y-4">
-        <input
-          type="text"
-          className="border p-2 w-full"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Brand Name"
-        />
+        <form
+          onSubmit={handleUpdate}
+          className="flex flex-col  items-center gap-[25px]"
+        >
+          <input
+            type="text"
+            className="border border-pink-800 p-2 w-[330px] rounded-[10px] text-pink-800 bg-pink-50"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Brand Name"
+          />
 
-        <input
-          type="file"
-          className="border p-2 w-full"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
+          <input
+            type="file"
+            className="border border-pink-800 p-2 w-[330px] rounded-[10px] text-pink-800 bg-pink-50"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
 
-        <button className="bg-green-500 text-white px-4 py-2">
-          Update Brand
-        </button>
-      </form>
+          <button className="border border-pink-800 px-6 py-3 rounded-[10px] text-pink-800 hover:bg-gray-200">
+            Update Brand
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

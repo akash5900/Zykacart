@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post(
   "/create",
-  upload.single("image"),
+  upload.array("images", 5),
   productController.createProducts,
 );
 
@@ -19,7 +19,7 @@ router.post(
   "/add",
   authmiddleware.authuser,
   sellermiddleware.isSeller,
-  upload.single("image"),
+  upload.array("images", 5),
   productController.createProducts,
 );
 
@@ -34,16 +34,16 @@ router.get("/all", productController.getAllProducts);
 router.get("/category/:categoryId", productController.getProductsByCategory);
 router.get("/brand/:brandId", productController.getProductsByBrand);
 router.get("/search", productController.searchProducts);
+router.get("/random", productController.getRandomProducts);
 router.get("/:id", productController.getSingleProduct);
 
 router.put(
   "/update/:id",
   authmiddleware.authuser,
   sellermiddleware.isSeller,
-  upload.single("image"),
+  upload.array("images", 5),
   productController.updateProduct,
 );
-
 
 router.delete(
   "/delete/:id",
@@ -56,7 +56,7 @@ router.put(
   "/admin/update/:id",
   auth.authuser,
   isAdmin,
-  upload.single("image"),
+  upload.array("images", 5),
   productController.adminUpdateProduct,
 );
 

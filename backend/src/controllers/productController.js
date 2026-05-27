@@ -16,12 +16,16 @@ async function createProducts(req, res) {
       });
     }
 
-    let imageUrl = "";
+    let imageUrls = [];
 
-    if (req.file) {
-      const result = await uploadFile(req.file.buffer);
-      imageUrl = result.url;
+    if (req.files && req.files.length > 0) {
+      for (let file of req.files) {
+        const result = await uploadFile(file.buffer);
+        imageUrls.push(result.url);
+      }
     }
+
+    const variants = JSON.parse(req.body.variants || "[]");
 
     const product = await productModel.create({
       name,
@@ -29,7 +33,8 @@ async function createProducts(req, res) {
       price,
       category,
       brand,
-      image: imageUrl,
+      images: imageUrls,
+      variants,
       seller: req.user?.role === "seller" ? req.user._id : null,
     });
 
@@ -109,16 +114,32 @@ async function updateProduct(req, res) {
       return res.status(403).json({ message: "Not allowed" });
     }
 
-    let imageUrl = product.image;
+    let imageUrls = product.images || [];
 
-    if (req.file) {
-      const result = await uploadFile(req.file.buffer);
-      imageUrl = result.url;
+    if (req.files && req.files.length > 0) {
+      imageUrls = [];
+
+      for (let file of req.files) {
+        const result = await uploadFile(file.buffer);
+        imageUrls.push(result.url);
+      }
     }
+
+    const variants =
+      typeof req.body.variants === "string"
+        ? JSON.parse(req.body.variants)
+        : req.body.variants;
 
     const updated = await productModel.findByIdAndUpdate(
       req.params.id,
-      { ...req.body, image: imageUrl },
+      {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        category: req.body.category,
+        images: imageUrls,
+        variants: variants, // ✅ IMPORTANT FIX
+      },
       { new: true },
     );
 
@@ -203,27 +224,62 @@ async function getSellerProducts(req, res) {
   }
 }
 
+async function getRandomProducts(req, res) {
+  try {
+    const products = await productModel.aggregate([{ $sample: { size: 20 } }]);
+
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
 async function adminUpdateProduct(req, res) {
-  let imageUrl = "";
+  try {
+    const product = await productModel.findById(req.params.id);
 
-  if (req.file) {
-    const result = await uploadFile(req.file.buffer);
-    imageUrl = result.url;
+    if (!product) {
+      return res.status(404).json({ message: "Not found" });
+    }
+
+    let imageUrls = product.images || [];
+
+    // ✅ multiple images
+    if (req.files && req.files.length > 0) {
+      imageUrls = [];
+
+      for (let file of req.files) {
+        const result = await uploadFile(file.buffer);
+        imageUrls.push(result.url);
+      }
+    }
+
+    // ✅ variants fix
+    const variants =
+      typeof req.body.variants === "string"
+        ? JSON.parse(req.body.variants)
+        : req.body.variants;
+
+    const updated = await productModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        category: req.body.category,
+        images: imageUrls,
+        variants: variants,
+      },
+      { new: true },
+    );
+
+    res.json(updated);
+  } catch (error) {
+    console.log("ADMIN UPDATE ERROR:", error); // 👈 IMPORTANT
+    res.status(500).json({ message: error.message });
   }
-
-  const updatedData = { ...req.body };
-
-  if (imageUrl) {
-    updatedData.image = imageUrl;
-  }
-
-  const product = await productModel.findByIdAndUpdate(
-    req.params.id,
-    updatedData,
-    { new: true },
-  );
-
-  res.json(product);
 }
 
 async function adminDeleteProduct(req, res) {
@@ -243,4 +299,5 @@ module.exports = {
   getSellerProducts,
   adminUpdateProduct,
   adminDeleteProduct,
+  getRandomProducts,
 };

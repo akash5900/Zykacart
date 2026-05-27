@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -13,18 +15,64 @@ const Signup = () => {
   });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "mobileNumber") {
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 10) return;
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
+  const validateForm = () => {
+    const { username, email, mobileNumber, password } = formData;
+
+    if (!username || !email || !mobileNumber || !password) {
+      alert("Please fill all fields");
+      return false;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Enter valid email");
+      return false;
+    }
+
+    if (!/^[6-9]\d{9}$/.test(mobileNumber)) {
+      alert("Enter valid mobile number");
+      return false;
+    }
+
+    if (/^(\d)\1{9}$/.test(mobileNumber)) {
+      alert("Invalid mobile number");
+      return false;
+    }
+
+    if (/^(\d)\1{1,}$/.test(mobileNumber.slice(1))) {
+      alert("Invalid mobile number");
+      return false;
+    }
+
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSignup = async () => {
+    if (!validateForm()) return;
     try {
       const res = await axios.post(
         "http://localhost:3000/api/user/register",
         formData,
       );
+
+      alert("Signup successfully");
 
       navigate("/login");
     } catch (error) {
@@ -55,19 +103,30 @@ const Signup = () => {
 
         <input
           className="border border-pink-800  w-[340px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
-          type="text"
+          type="tel"
           name="mobileNumber"
           placeholder="Enter Mobile Number"
+          value={formData.mobileNumber}
           onChange={handleChange}
+          maxLength="10"
         />
 
-        <input
-          className="border border-pink-800  w-[340px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          onChange={handleChange}
-        />
+        <div className="relative w-[400px]">
+          <input
+            className="border border-pink-800  w-[340px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Enter Password"
+            onChange={handleChange}
+            maxLength="6"
+          />
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-3 cursor-pointer text-pink-800"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
 
         <button
           onClick={handleSignup}

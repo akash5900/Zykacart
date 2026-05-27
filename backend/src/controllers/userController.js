@@ -195,10 +195,43 @@ async function becomeSeller(req, res) {
   }
 }
 
+const saveAddress = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { address: req.body },
+      { new: true },
+    );
+
+    res.json({
+      message: "Address saved",
+      address: updatedUser.address,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getAddress = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.user._id);
+
+    res.json({
+      address: user.address,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   adminLogin,
   adminSignup,
   becomeSeller,
+  getAddress,
+  saveAddress
 };

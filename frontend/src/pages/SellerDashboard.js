@@ -65,14 +65,14 @@ function SellerProducts() {
               >
                 <td className="p-2">
                   <img
-                    src={product.image}
+                    src={product.images?.[0] || product.image}
                     alt=""
                     className="w-12 h-12 md:w-16 md:h-16 object-cover mx-auto"
                   />
                 </td>
 
                 <td className="p-2">{product.name}</td>
-                <td className="p-2">₹{product.price}</td>
+                <td className="p-2">₹{product.variants?.[0]?.price || product.price}</td>
                 <td className="p-2 hidden md:table-cell">{product.category?.name}</td>
                 <td className="p-2">{product.brand?.name}</td>
 
