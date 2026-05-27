@@ -53,7 +53,7 @@ function Banner() {
 
         <button
           onClick={handleBannerClick}
-          className="border bg-white px-3 md:px-8 md:py-3 text-pink-950 text-xs md:text-xl rounded-lg"
+          className="border bg-white px-3 md:px-8 md:py-3 text-pink-950 text-[12px] md:text-xl rounded-lg"
         >
           {banners[current].buttonText}
         </button>
