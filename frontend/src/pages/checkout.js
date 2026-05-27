@@ -238,14 +238,14 @@ function Checkout() {
             name="fullName"
             placeholder="Full Name"
             onChange={handleChange}
-            className="border p-2"
+            className="border p-2 md:w-full w-[300px]"
           />
 
           <input
             name="mobile"
             placeholder="Mobile"
             onChange={handleChange}
-            className="border p-2"
+            className="border p-2 md:w-full w-[300px]"
           />
 
           {isLoaded && (
@@ -255,15 +255,15 @@ function Checkout() {
             >
               <input
                 placeholder="Search Address"
-                className="border p-2 col-span-2"
+                className="border p-2 col-span-2 md:w-full w-[300px]"
               />
             </Autocomplete>
           )}
 
-          <input value={address.pincode} readOnly className="border p-2" />
-          <input value={address.city} readOnly className="border p-2" />
-          <input value={address.state} readOnly className="border p-2" />
-          <input value={address.country} readOnly className="border p-2" />
+          <input value={address.pincode} readOnly className="border p-2 md:w-full w-[300px]" />
+          <input value={address.city} readOnly className="border p-2 md:w-full w-[300px]" />
+          <input value={address.state} readOnly className="border p-2 md:w-full w-[300px]" />
+          <input value={address.country} readOnly className="border p-2 md:w-full w-[300px]" />
         </div>
       )}
 
