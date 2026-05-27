@@ -29,7 +29,7 @@ const Home = () => {
       <div className="hidden md:block">
         <Banner2 />
       </div>
-      <div className="hidden md:block">
+      <div className=" ">
         <Brands />
       </div>
       <Topbrands />
