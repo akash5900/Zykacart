@@ -108,7 +108,7 @@ const BecomeSeller = () => {
           >
             <input
               placeholder="Search Shop Address"
-              className="border w-full md:w-[350px] bg-pink-100 border-pink-800 text-pink-800 rounded mb-3 p-2"
+              className="border w-[320px] md:w-[350px] bg-pink-100 border-pink-800 text-pink-800 rounded mb-3 p-2"
             />
           </Autocomplete>
         )}
@@ -116,7 +116,7 @@ const BecomeSeller = () => {
         <textarea
           value={formData.address}
           readOnly
-          className="border w-full bg-gray-100 border-pink-800 text-pink-800 rounded mb-3 p-2"
+          className="border w-full bg-pink-100 border-pink-800 text-pink-800 rounded mb-3 p-2"
         />
 
         <button
