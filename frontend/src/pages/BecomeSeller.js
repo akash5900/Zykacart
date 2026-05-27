@@ -78,8 +78,8 @@ const BecomeSeller = () => {
 
   return (
     <div className="flex justify-center items-center mt-[100px]">
-      <div className="border border-pink-800 p-6 rounded-[10px] w-[300px] md:w-[400px] flex flex-col items-center bg-gray-50 ">
-        <h2 className="text-2xl text-pink-600 font-semibold mb-8 mt-6">
+      <div className="border border-pink-800 p-6 rounded-[10px] w-[320px] md:w-[400px] flex flex-col items-center bg-gray-50 ">
+        <h2 className="text-md md:text-2xl text-pink-600 font-semibold mb-8 mt-6">
           Become a Seller
         </h2>
 
@@ -88,7 +88,7 @@ const BecomeSeller = () => {
           name="shopName"
           placeholder="Business Name"
           onChange={handleChange}
-          className="border border-pink-800 bg-pink-100 text-pink-800 rounded w-full md:w-[300px] mb-3 p-2 "
+          className="border border-pink-800 bg-pink-100 text-pink-800 rounded w-full mb-3 p-2 "
         />
 
         <input
