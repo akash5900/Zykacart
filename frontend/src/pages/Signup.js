@@ -67,10 +67,7 @@ const Signup = () => {
   const handleSignup = async () => {
     if (!validateForm()) return;
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/user/register",
-        formData,
-      );
+      await axios.post("http://localhost:3000/api/user/register", formData);
 
       alert("Signup successfully");
 
