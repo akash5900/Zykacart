@@ -145,9 +145,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex gap-6 p-6">
+    <div className="flex flex-col md:flex-row gap-3 md:gap-6 p-6">
       <div className="w-[250px] bg-white shadow-md rounded-lg p-4">
-        <div className="flex flex-col md:flex-row items-center gap-3 mb-5">
+        <div className="flex items-center gap-2 md:gap-3 mb-5">
           <img
             src={`https://ui-avatars.com/api/?name=${user?.username}&background=ec4899&color=fff`}
             className="w-12 h-12 rounded-full"
@@ -189,7 +189,7 @@ const Profile = () => {
             <p>Email: {user.email}</p>
             <p>Mobile: {user.mobileNumber}</p>
 
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex  gap-3">
               <button
                 onClick={handleHome}
                 className="bg-gray-500 text-white px-4 py-2 rounded"
