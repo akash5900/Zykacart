@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(
   cors({
-    origin: ["https://zykacart.vercel.app"],
+    origin: ["https://zykacart.vercel.app", "https://zykacart-ufpv.vercel.app"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE"],
