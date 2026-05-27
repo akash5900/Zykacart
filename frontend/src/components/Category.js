@@ -22,8 +22,8 @@ function CategoryBar2() {
   };
 
   return (
-    <div className=" py-4 md:py-10 bg-white px-2 md:px-15 overflow-x-auto md:container md:mx-auto whitespace-nowrap scrollbar-hide ">
-      <div className=" flex gap-3 md:gap-9 ">
+    <div className=" py-4 md:py-10 bg-white px-1 md:px-15 overflow-x-auto md:container md:mx-auto whitespace-nowrap scrollbar-hide ">
+      <div className=" flex gap-1 md:gap-9 ">
         {category.map((cat) => {
           return <CategoryItem key={cat._id} id={cat._id} img={cat.image} label={cat.name} />;
         })}
