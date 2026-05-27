@@ -9,7 +9,7 @@ function Banner() {
 
   const fetchBanners = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/banner/position/home",
+      "https://zykacart-xx7b.vercel.app/api/banner/position/home",
     );
     setBanners(res.data);
   };

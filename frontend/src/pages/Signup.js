@@ -67,7 +67,7 @@ const Signup = () => {
   const handleSignup = async () => {
     if (!validateForm()) return;
     try {
-      await axios.post("http://localhost:3000/api/user/register", formData);
+      await axios.post("https://zykacart-xx7b.vercel.app/api/user/register", formData);
 
       alert("Signup successfully");
 

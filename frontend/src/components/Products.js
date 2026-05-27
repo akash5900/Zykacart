@@ -7,7 +7,7 @@ function Products() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/product/all")
+      .get("https://zykacart-xx7b.vercel.app/api/product/all")
       .then((res) => {
         console.log("DATA:", res.data);
         setProducts(res.data);

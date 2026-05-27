@@ -6,7 +6,7 @@ function Brands() {
   const [brands, setBrands] = useState([]);
 
   const fetchBrands = async () => {
-    const res = await axios.get("http://localhost:3000/api/brand/all");
+    const res = await axios.get("https://zykacart-xx7b.vercel.app/api/brand/all");
     setBrands(res.data);
   };
 

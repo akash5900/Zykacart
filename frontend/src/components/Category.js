@@ -13,7 +13,7 @@ function CategoryBar2() {
   const getcategory = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/category/categorys",
+        "https://zykacart-xx7b.vercel.app/api/category/categorys",
       );
       setCategory(res.data.category);
     } catch (error) {

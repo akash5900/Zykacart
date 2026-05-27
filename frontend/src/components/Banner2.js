@@ -8,7 +8,7 @@ function Banner2() {
 
   const fetchBanner = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/banner/position/middle",
+      "https://zykacart-xx7b.vercel.app/api/banner/position/middle",
     );
     setBanners(res.data[0]);
   };

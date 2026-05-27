@@ -8,7 +8,7 @@ function BrandProducts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/product/brand/" + brandId)
+      .get("https://zykacart-xx7b.vercel.app/api/product/brand/" + brandId)
       .then((res) => {
         console.log("BRAND DATA:", res.data); // debug
         setProducts(res.data);

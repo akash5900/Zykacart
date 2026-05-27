@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/api/user/login", {
+      const res = await axios.post("https://zykacart-xx7b.vercel.app/api/user/login", {
         email,
         password,
       });
