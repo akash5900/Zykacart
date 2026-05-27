@@ -145,7 +145,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-3 md:gap-6 p-6">
+    <div className="flex flex-col md:flex-row gap-3 md:gap-6 p-6 bg-gray-100">
       <div className="w-[250px] bg-white shadow-md rounded-lg p-4">
         <div className="flex items-center gap-2 md:gap-3 mb-5">
           <img
