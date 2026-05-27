@@ -31,7 +31,9 @@ const Home = () => {
       <div className="hidden md:block">
         <Banner2 />
       </div>
-      <Brands />
+      <div className="hidden md:block">
+        <Brands />
+      </div>
       <Topbrands />
       <div id="products-section">
         <Products />
