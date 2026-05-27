@@ -51,7 +51,7 @@ const Header = () => {
 
   return (
     <header className=" border-b flex h-[80px] md:h-20 ">
-      <div className=" flex items-center justify-between px-4 md:px-4 py-4 gap-4 md:gap-10 ">
+      <div className=" flex items-center justify-between px-4 md:px-4 py-4 gap-2 md:gap-10 ">
         <button
           className="md:hidden text-xl cursor-pointer hover:text-pink-600"
           onClick={() => setMenuOpen(!menuOpen)}
