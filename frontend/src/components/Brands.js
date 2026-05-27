@@ -15,7 +15,7 @@ function Brands() {
   }, []);
   return (
     <div className="px-3 md:px-10 lg:px-[60px] md:py-2">
-      <div className=" flex items-center justify-between m-1 md:mt-6 md:mb-8 ">
+      <div className=" flex items-center justify-between md:mt-6 md:mb-8 ">
         <h1 className=" text-md md:text-3xl text-pink-600">Original Brands</h1>
       </div>
 
