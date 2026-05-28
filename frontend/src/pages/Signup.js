@@ -113,7 +113,7 @@ const Signup = () => {
 
         <div className="relative w-[400px]">
           <input
-            className="border border-pink-800 w-[300px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+            className="border border-pink-800 w-[300px] md:w-[400px] pl-8 md:pl-0 rounded-[8px] bg-pink-50 px-3 py-2"
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Enter Password"
@@ -122,7 +122,7 @@ const Signup = () => {
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-1 md:right-3 top-1 md:top-3 cursor-pointer text-pink-800"
+            className="absolute right-5 md:right-3 top-2 md:top-3 cursor-pointer text-pink-800"
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
