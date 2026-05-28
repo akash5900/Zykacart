@@ -43,7 +43,7 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <div className="relative w-[335px] md:w-[400px] px-4">
+        <div className="relative w-[330px] md:w-[400px] px-3 md:px-6">
           <input
             className="border border-pink-800 w-full p-2 rounded-[8px] bg-pink-50  "
             type={showPassword ? "text" : "password"}
@@ -52,7 +52,7 @@ const Login = () => {
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 md:right-5 top-2 md:top-4 cursor-pointer text-pink-800"
+            className="absolute right-5 md:right-9 top-3 md:top-3 cursor-pointer text-pink-800"
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
