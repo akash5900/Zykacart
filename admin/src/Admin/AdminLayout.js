@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function AdminLayout() {
   return (
-    <div className="flex">
+    <div className="flex flex-col md:flex-row">
       
       {/* Sidebar */}
       <div className="w-64 bg-gray-50 ">
