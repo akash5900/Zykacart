@@ -43,7 +43,7 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <div className="relative w-[330px] md:w-[400px] px-3 md:px-6">
+        <div className="relative w-[330px] md:w-[400px] px-4 md:px-6">
           <input
             className="border border-pink-800 w-full p-2 rounded-[8px] bg-pink-50  "
             type={showPassword ? "text" : "password"}
