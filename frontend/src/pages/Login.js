@@ -34,15 +34,15 @@ const Login = () => {
         </h1>
 
         <input
-          className="border border-pink-800 w-full md:w-[350px] p-2 md:p-0 rounded-[8px] bg-pink-50"
+          className="border border-pink-800 w-full md:w-[350px] p-2  rounded-[8px] bg-pink-50"
           type="email"
           placeholder="Enter email"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <div className="relative w-[350px]">
+        <div className="relative w-[350px] px-4">
           <input
-            className="border border-pink-800 w-full md:w-[350px] p-2 md:p-0 rounded-[8px] bg-pink-50  "
+            className="border border-pink-800 w-full md:w-[350px] p-2  rounded-[8px] bg-pink-50  "
             type={showPassword ? "text" : "password"}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
