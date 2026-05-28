@@ -111,7 +111,7 @@ const Signup = () => {
           maxLength="10"
         />
 
-        <div className="relative w-[330px] md:w-[400px]">
+        <div className="relative w-[330px] md:w-[400px] p-2">
           <input
             className="border border-pink-800 w-full rounded-[8px] bg-pink-50 px-3 py-2"
             type={showPassword ? "text" : "password"}
