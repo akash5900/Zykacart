@@ -82,11 +82,11 @@ const Signup = () => {
 
   return (
     <div className=" flex items-center justify-center px-3 ">
-      <div className=" border rounded-[10px] shadow-md border-black min-h-[470px] flex flex-col items-center justify-center gap-[20px] mt-[50px] px-4 md:px-[20px] py-[10px] ">
+      <div className=" border rounded-[10px] shadow-md border-black min-h-[470px] w-[335px] md:w-[400px] flex flex-col items-center justify-center gap-[20px] mt-[50px] px-4 md:px-[20px] py-[10px] ">
         <h2 className="text-4xl text-pink-800 font-bold">Signup</h2>
 
         <input
-          className="border border-pink-800 w-[300px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+          className="border border-pink-800 w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
           type="text"
           name="username"
           placeholder="Enter Username"
@@ -94,7 +94,7 @@ const Signup = () => {
         />
 
         <input
-          className="border border-pink-800 w-[300px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+          className="border border-pink-800  w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
           type="email"
           name="email"
           placeholder="Enter Email"
@@ -102,7 +102,7 @@ const Signup = () => {
         />
 
         <input
-          className="border border-pink-800 w-[300px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+          className="border border-pink-800  w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
           type="tel"
           name="mobileNumber"
           placeholder="Enter Mobile Number"
@@ -113,7 +113,7 @@ const Signup = () => {
 
         <div className="relative w-[400px]">
           <input
-            className="border border-pink-800  w-[300px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+            className="border border-pink-800  w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Enter Password"
