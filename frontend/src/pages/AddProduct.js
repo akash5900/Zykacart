@@ -106,7 +106,7 @@ const AddProduct = () => {
           name="name"
           placeholder="Name"
           onChange={handleChange}
-          className="border border-pink-800 p-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
+          className="border border-pink-800 px-3 py-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
         />
 
         <input
@@ -114,13 +114,13 @@ const AddProduct = () => {
           placeholder="Base Price (optional)"
           type="number"
           onChange={handleChange}
-          className="border border-pink-800 p-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
+          className="border border-pink-800 px-3 py-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
         />
 
         <select
           name="category"
           onChange={handleChange}
-          className="border border-pink-800 p-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
+          className="border border-pink-800 px-3 py-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
         >
           <option>Select Category</option>
           {categories.map((c) => (
@@ -133,7 +133,7 @@ const AddProduct = () => {
         <select
           name="brand"
           onChange={handleChange}
-          className="border border-pink-800 p-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
+          className="border border-pink-800 px-3 py-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
         >
           <option>Select Brand</option>
           {brands.map((b) => (
@@ -147,7 +147,7 @@ const AddProduct = () => {
           type="file"
           multiple
           onChange={handleImages}
-          className="border border-pink-800 p-2 w-full bg-pink-50 rounded-[10px] text-pink-800"
+          className="border border-pink-800 px-3 py-2 w-full bg-pink-50 rounded-[10px] text-pink-800"
         />
 
         <div className="flex gap-2 mt-2 flex-wrap">
@@ -170,7 +170,7 @@ const AddProduct = () => {
           name="description"
           placeholder="Description"
           onChange={handleChange}
-          className="border border-pink-800 p-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
+          className="border border-pink-800 px-3 py-2 w-full rounded-[10px] text-pink-800 bg-pink-50"
         />
 
         <div className="w-full">
