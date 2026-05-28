@@ -6,7 +6,7 @@ function AdminLayout() {
     <div className="flex flex-col md:flex-row">
       
       {/* Sidebar */}
-      <div className="w-30 md:w-64 bg-gray-50 ">
+      <div className="md:w-64 bg-gray-50 ">
         <Sidebar />
       </div>
 
