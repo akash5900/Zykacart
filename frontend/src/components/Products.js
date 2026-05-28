@@ -40,7 +40,7 @@ function Products() {
 
             <Link
               to={`/product/${product._id}`}
-              className="bg-pink-500 text-white text-xs md:text-md px-3 py-1 mt-2 inline-block"
+              className="bg-pink-500 text-white text-xs md:text-lg px-3 py-1 mt-2 inline-block"
             >
               View Details
             </Link>

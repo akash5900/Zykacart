@@ -189,7 +189,7 @@ const Footer = () => {
           />
           <button
             onClick={handleSubscribe}
-            className="bg-pink-600 text-white text-xs md:text-md px-4 py-2 rounded-r-md hover:bg-gray-800 transition"
+            className="bg-pink-600 text-white text-xs md:text-lg px-4 py-2 rounded-r-md hover:bg-gray-800 transition"
           >
             Subscribe
           </button>
