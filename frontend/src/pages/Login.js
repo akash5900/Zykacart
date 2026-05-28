@@ -28,13 +28,13 @@ const Login = () => {
 
   return (
     <section className=" flex items-center justify-center  ">
-      <div className=" mt-[100px] h-[350px] border border-black rounded-[10px] flex flex-col items-center justify-center gap-6 py-[10px] px-[20px] ">
+      <div className=" mt-[100px] w-[335px] md:w-[400px] h-[350px] border border-black rounded-[10px] flex flex-col items-center justify-center gap-6 py-[10px] px-[20px] ">
         <h1 className="text-5xl text-pink-800 font-semi-bold mb-[20px] ">
           LOGIN
         </h1>
 
         <input
-          className="border border-pink-800 w-[350px] rounded-[8px] bg-pink-50"
+          className="border border-pink-800 w-full md:w-[350px] p-2 md:p-0 rounded-[8px] bg-pink-50"
           type="email"
           placeholder="Enter email"
           onChange={(e) => setEmail(e.target.value)}
@@ -42,7 +42,7 @@ const Login = () => {
 
         <div className="relative w-[350px]">
           <input
-            className="border border-pink-800 w-[350px] rounded-[8px] bg-pink-50  "
+            className="border border-pink-800 w-full md:w-[350px] p-2 md:p-0 rounded-[8px] bg-pink-50  "
             type={showPassword ? "text" : "password"}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
