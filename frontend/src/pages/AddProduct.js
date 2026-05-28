@@ -97,7 +97,7 @@ const AddProduct = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="border border-pink-800 w-full w-[399px] md:w-[480px] flex flex-col items-center gap-[15px] rounded-[10px] mt-[12px] mb-[10px] p-4">
+      <div className="border border-pink-800 w-full w-[330px] md:w-[480px] flex flex-col items-center gap-[15px] rounded-[10px] mt-[12px] mb-[10px] p-4">
         <h2 className="text-2xl font-semibold text-pink-800 mt-[10px] mb-[10px]">
           Add Product
         </h2>
