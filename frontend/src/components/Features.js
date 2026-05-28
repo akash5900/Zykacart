@@ -7,11 +7,11 @@ function Features() {
         </div>
         <div className=" h-3 md:h-6 w-px bg-gray-300"></div>
         <div>
-          <span className="text-[12px] md:text:md">Cash on Delivery</span>
+          <span className="text-[12px] md:text:xl">Cash on Delivery</span>
         </div>
         <div className="h-3 md:h-6 w-px bg-gray-300"></div>
         <div>
-          <span className="text-[12px] md:text:md">Lowest Prices</span>
+          <span className="text-[12px] md:text:xl">Lowest Prices</span>
         </div>
       </div>
     </div>
