@@ -12,10 +12,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("https://zykacart-xx7b.vercel.app/api/user/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://zykacart-xx7b.vercel.app/api/user/login",
+        {
+          email,
+          password,
+        },
+      );
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -34,22 +37,22 @@ const Login = () => {
         </h1>
 
         <input
-          className="border border-pink-800 w-full md:w-[350px] p-2  rounded-[8px] bg-pink-50"
+          className="border border-pink-800 w-full md:w-[350px] p-2 rounded-[8px] bg-pink-50"
           type="email"
           placeholder="Enter email"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <div className="relative w-[350px] px-4">
+        <div className="relative w-[335px] md:w-[400px] px-4">
           <input
-            className="border border-pink-800 w-full md:w-[350px] p-2  rounded-[8px] bg-pink-50  "
+            className="border border-pink-800 w-full p-2 rounded-[8px] bg-pink-50  "
             type={showPassword ? "text" : "password"}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-4 cursor-pointer text-pink-800"
+            className="absolute right-3 md:right-3 top-2 md:top-4 cursor-pointer text-pink-800"
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
