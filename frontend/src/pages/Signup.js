@@ -83,7 +83,7 @@ const Signup = () => {
         <h2 className="text-4xl text-pink-800 font-bold">Signup</h2>
 
         <input
-          className="border border-pink-800 w-[340px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+          className="border border-pink-800 w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
           type="text"
           name="username"
           placeholder="Enter Username"
@@ -91,7 +91,7 @@ const Signup = () => {
         />
 
         <input
-          className="border border-pink-800  w-[340px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+          className="border border-pink-800  w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
           type="email"
           name="email"
           placeholder="Enter Email"
@@ -99,7 +99,7 @@ const Signup = () => {
         />
 
         <input
-          className="border border-pink-800  w-[340px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+          className="border border-pink-800  w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
           type="tel"
           name="mobileNumber"
           placeholder="Enter Mobile Number"
@@ -110,7 +110,7 @@ const Signup = () => {
 
         <div className="relative w-[400px]">
           <input
-            className="border border-pink-800  w-[340px] md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
+            className="border border-pink-800  w-full md:w-[400px] rounded-[8px] bg-pink-50 px-3 py-2"
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Enter Password"
@@ -119,7 +119,7 @@ const Signup = () => {
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-3 cursor-pointer text-pink-800"
+            className="absolute right-1 md:right-3 top-1 md:top-3 cursor-pointer text-pink-800"
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
