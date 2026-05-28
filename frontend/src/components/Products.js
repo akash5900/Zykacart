@@ -36,11 +36,11 @@ function Products() {
               {product.name}
             </h2>
 
-            <p className="text-gray-600">₹{product.variants?.[0]?.price || product.price}</p>
+            <p className="text-gray-600 text-xs md:text-lg">₹{product.variants?.[0]?.price || product.price}</p>
 
             <Link
               to={`/product/${product._id}`}
-              className="bg-pink-500 text-white px-3 py-1 mt-2 inline-block"
+              className="bg-pink-500 text-white text-xs md:text-md px-3 py-1 mt-2 inline-block"
             >
               View Details
             </Link>

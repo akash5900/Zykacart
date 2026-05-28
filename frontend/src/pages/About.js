@@ -43,13 +43,13 @@ const About = () => {
           About Developers
         </h1>
         <p className="text-lg">
-          Hi, we are{" "}
+          Hi, i am{" "}
           <span className="font-semibold text-pink-900">
-            Akashdeep Singh and Onkar Singh
+            Akashdeep Singh 
           </span>
         </p>
         <p className="text-gray-600 mt-2">
-          A passionate Full Stack Developers who built this project to learn and
+          A passionate Full Stack Developer who built this project to learn and
           implement real-world e-commerce systems.
         </p>
       </div>

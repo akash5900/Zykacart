@@ -185,11 +185,11 @@ const Footer = () => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="px-4 py-2 border rounded-l-md outline-none w-full md:w-64"
+            className="px-4 py-2 border rounded-l-md outline-none w-full md:w-64 text-sm md:text-lg"
           />
           <button
             onClick={handleSubscribe}
-            className="bg-pink-600 text-white px-4 py-2 rounded-r-md hover:bg-gray-800 transition"
+            className="bg-pink-600 text-white text-xs md:text-md px-4 py-2 rounded-r-md hover:bg-gray-800 transition"
           >
             Subscribe
           </button>
@@ -198,7 +198,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="bg-gray-200 text-center py-4 text-sm">
-        © 2026 Zykacart | Developed by Akashdeep Singh, Onkar Singh
+        © 2026 Zykacart | Developed by Akashdeep Singh
       </div>
     </footer>
   );
