@@ -14,9 +14,13 @@ const Footer = () => {
   const [email, setEmail] = useState("");
 
   const handleSeller = () => {
-    if (!user) {
-      navigate("/login");
-    } else if (user.role === "seller") {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/auth");
+    }
+
+    if (user.role === "seller") {
       navigate("/seller-dashboard");
     } else {
       navigate("/become-seller");
