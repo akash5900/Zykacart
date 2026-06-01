@@ -15,29 +15,37 @@ const Footer = () => {
 
   const handleSeller = () => {
     const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!token) {
+      alert("Please login first");
       navigate("/auth");
+      return;
     }
 
-    if (user.role === "seller") {
-      navigate("/seller-dashboard");
-    } else {
+    if (user?.role === "buyer") {
       navigate("/become-seller");
+    } else if (user?.role === "seller") {
+      navigate("/seller-dashboard");
+    } else if (user?.role === "admin") {
+      alert("Admin cannot become seller");
     }
   };
 
   const handleSeller2 = () => {
     const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!token) {
-      navigate("/auth");
+      alert("Please login first");
+      navigate("/login");
+      return;
     }
 
-    if (user.role === "seller") {
-      navigate("/add-product");
-    } else {
+    if (user?.role === "buyer") {
       navigate("/become-seller");
+    } else if (user?.role === "seller") {
+      navigate("/add-product");
     }
   };
 
