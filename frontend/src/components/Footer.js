@@ -24,7 +24,9 @@ const Footer = () => {
   };
 
   const handleSeller = () => {
-    if (user?.isSeller) {
+    if (!user) {
+      navigate("/login");
+    } else if (user.role === "seller") {
       navigate("/seller-dashboard");
     } else {
       navigate("/become-seller");
