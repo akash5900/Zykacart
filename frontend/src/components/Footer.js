@@ -10,7 +10,6 @@ import { useState } from "react";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
   const [email, setEmail] = useState("");
 
   const handleSeller = () => {
