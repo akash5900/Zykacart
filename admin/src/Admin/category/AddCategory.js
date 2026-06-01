@@ -41,7 +41,7 @@ function Addcategory() {
 
   return (
     <div className="flex items-center justify-center h-auto">
-      <div className="border border-pink-800 w-[380px] h-[360px] flex flex-col items-center gap-[40px] rounded-[10px] mt-[100px]">
+      <div className="border border-pink-800 w-[380px] h-[360px] flex flex-col px-2 md:px-0 items-center gap-[40px] rounded-[10px] mt-[100px]">
         <h1 className="text-2xl text-pink-800 mt-[50px]">Add Category</h1>
 
         <form
@@ -52,7 +52,7 @@ function Addcategory() {
             type="text"
             placeholder="Enter Category Name"
             value={name}
-            className="border border-pink-800 p-2 w-[330px] rounded-[10px] text-pink-800 bg-pink-50"
+            className="border border-pink-800 p-2 w-full md:w-[330px] rounded-[10px] text-pink-800 bg-pink-50"
             onChange={(e) => setName(e.target.value)}
           />
 
@@ -60,7 +60,7 @@ function Addcategory() {
             type="file"
             name="image"
             accept="image/*"
-            className="border border-pink-800 p-2 w-[330px] bg-pink-50 text-pink-800 rounded-[10px]"
+            className="border border-pink-800 p-2 w-full md:w-[330px] bg-pink-50 text-pink-800 rounded-[10px]"
             onChange={(e) => setImage(e.target.files[0])}
           />
 
