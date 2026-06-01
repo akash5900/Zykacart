@@ -45,14 +45,14 @@ function AddBanner() {
 
   return (
     <div className="flex items-center justify-center h-auto">
-      <div className="border border-pink-800 w-[480px] h-[520px] flex flex-col items-center gap-[40px] rounded-[10px] mt-[30px]">
+      <div className="border border-pink-800 w-[380px] md:w-[480px] h-[520px] px-3 md:px-0 flex flex-col items-center gap-[40px] rounded-[10px] mt-[30px]">
         <h2 className="text-2xl font-semibold text-pink-800 mt-[30px]">Add Banner</h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-[15px]">
           <input
             type="text"
             placeholder="Title"
-            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            className="border border-pink-800 p-2 w-full md:w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -60,7 +60,7 @@ function AddBanner() {
           <input
             type="text"
             placeholder="Subtitle"
-            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            className="border border-pink-800 p-2 w-full md:w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
           />
@@ -68,7 +68,7 @@ function AddBanner() {
           <input
             type="text"
             placeholder="Button Text"
-            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            className="border border-pink-800 p-2 w-full md:w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
             value={buttonText}
             onChange={(e) => setButtonText(e.target.value)}
           />
@@ -76,13 +76,13 @@ function AddBanner() {
           <input
             type="text"
             placeholder="Button Link"
-            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            className="border border-pink-800 p-2 w-full md:w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
             value={buttonLink}
             onChange={(e) => setButtonLink(e.target.value)}
           />
 
           <select
-            className="border border-pink-800 p-2 w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
+            className="border border-pink-800 p-2 w-full md:w-[420px] rounded-[10px] text-pink-800 bg-pink-50"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
           >
@@ -94,7 +94,7 @@ function AddBanner() {
 
           <input
             type="file"
-            className="border border-pink-800 p-2 w-[420px] bg-pink-50 rounded-[10px] text-pink-800"
+            className="border border-pink-800 p-2 w-full md:w-[420px] bg-pink-50 rounded-[10px] text-pink-800"
             onChange={(e) => setImage(e.target.files[0])}
           />
 

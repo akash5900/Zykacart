@@ -36,21 +36,21 @@ function AddBrand() {
 
   return (
     <div className="flex items-center justify-center h-auto">
-      <div className="border border-pink-800 w-[380px] h-[360px] flex flex-col items-center gap-[40px] rounded-[10px] mt-[100px]">
+      <div className="border border-pink-800 w-[380px] h-[360px] px-2 md:px-0 flex flex-col items-center gap-[40px] rounded-[10px] mt-[100px]">
         <h2 className="text-2xl text-pink-800 mt-[50px]">Add Brand</h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-[25px]">
           <input
             type="text"
             placeholder="Brand Name"
-            className="border border-pink-800 p-2 w-[330px] rounded-[10px] text-pink-800 bg-pink-50"
+            className="border border-pink-800 p-2 w-full md:w-[330px] rounded-[10px] text-pink-800 bg-pink-50"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
 
           <input
             type="file"
-            className="border border-pink-800 p-2 w-[330px] bg-pink-50 text-pink-800 rounded-[10px]"
+            className="border border-pink-800 p-2 w-full md:w-[330px] bg-pink-50 text-pink-800 rounded-[10px]"
             onChange={(e) => setImage(e.target.files[0])}
           />
 
