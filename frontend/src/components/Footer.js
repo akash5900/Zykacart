@@ -27,6 +27,20 @@ const Footer = () => {
     }
   };
 
+  const handleSeller2 = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/auth");
+    }
+
+    if (user.role === "seller") {
+      navigate("/add-product");
+    } else {
+      navigate("/become-seller");
+    }
+  };
+
   const handleSubscribe = () => {
     if (!email) {
       alert("Please enter email");
@@ -170,7 +184,7 @@ const Footer = () => {
             </li>
 
             <li
-              onClick={() => handleSellerAccess("/add-product")}
+              onClick={handleSeller2}
               className="cursor-pointer hover:text-pink-900  hover:pl-2 transition-all"
             >
               Add Product
@@ -179,7 +193,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Newsletter */}
       <div className="border-t border-pink-800 py-6 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm">Subscribe for latest updates</p>
 
@@ -200,7 +213,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom */}
       <div className="bg-gray-200 text-center py-4 text-sm">
         © 2026 Zykacart | Developed by Akashdeep Singh
       </div>
