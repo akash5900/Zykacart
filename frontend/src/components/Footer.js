@@ -23,6 +23,14 @@ const Footer = () => {
     }
   };
 
+  const handleSeller = () => {
+    if (user?.isSeller) {
+      navigate("/seller-dashboard");
+    } else {
+      navigate("/become-seller");
+    }
+  };
+
   const handleSubscribe = () => {
     if (!email) {
       alert("Please enter email");
@@ -152,7 +160,7 @@ const Footer = () => {
           <h3 className="font-semibold text-pink-600 mb-3">Seller</h3>
           <ul className="space-y-2 text-sm">
             <li
-              onClick={() => navigate("/become-seller")}
+              onClick={handleSeller}
               className="cursor-pointer hover:text-pink-900 hover:pl-2 transition-all"
             >
               Become Seller
