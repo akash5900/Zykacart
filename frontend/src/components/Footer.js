@@ -13,16 +13,6 @@ const Footer = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [email, setEmail] = useState("");
 
-  const handleSellerAccess = (path) => {
-    if (!user) {
-      navigate("/login");
-    } else if (user.role === "seller") {
-      navigate(path);
-    } else {
-      navigate("/become-seller");
-    }
-  };
-
   const handleSeller = () => {
     if (!user) {
       navigate("/login");
@@ -169,7 +159,7 @@ const Footer = () => {
             </li>
 
             <li
-              onClick={() => handleSellerAccess("/seller-dashboard")}
+              onClick={handleSeller}
               className="cursor-pointer hover:text-pink-900  hover:pl-2 transition-all"
             >
               Dashboard
