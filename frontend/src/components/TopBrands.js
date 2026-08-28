@@ -37,12 +37,10 @@ function TopBrands() {
       className="bg-gray-200 overflow-x-auto scrollbar-hide overflow-y-hidden py-2"
     >
       <div className="flex  gap-3 md:gap-[20px]">
-        {/* First set */}
         {brands.map((img, index) => (
           <TopBrandsItem key={index} img={img} />
         ))}
 
-        {/* Duplicate set for smooth infinite */}
         {brands.map((img, index) => (
           <TopBrandsItem key={"dup-" + index} img={img} />
         ))}

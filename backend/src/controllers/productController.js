@@ -138,7 +138,7 @@ async function updateProduct(req, res) {
         description: req.body.description,
         category: req.body.category,
         images: imageUrls,
-        variants: variants, // ✅ IMPORTANT FIX
+        variants: variants,
       },
       { new: true },
     );

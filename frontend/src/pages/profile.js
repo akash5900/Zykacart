@@ -17,6 +17,8 @@ const Profile = () => {
     pincode: "",
     city: "",
     state: "",
+    
+
     country: "",
   });
 
@@ -146,6 +148,8 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col md:flex-row gap-3 md:gap-6 p-6 bg-gray-100">
+      {/* left div
+       */}
       <div className="w-[250px] bg-white shadow-md rounded-lg p-4">
         <div className="flex items-center gap-2 md:gap-3 mb-5">
           <img
@@ -180,6 +184,8 @@ const Profile = () => {
           Manage Address
         </button>
       </div>
+
+      {/* right div */}
 
       <div className="flex-1 bg-white shadow-md rounded-lg p-6">
         {activeTab === "profile" && user && (

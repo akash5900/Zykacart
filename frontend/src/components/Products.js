@@ -36,7 +36,9 @@ function Products() {
               {product.name}
             </h2>
 
-            <p className="text-gray-600 text-xs md:text-lg">₹{product.variants?.[0]?.price || product.price}</p>
+            <p className="text-gray-600 text-xs md:text-lg">
+              ₹{product.variants?.[0]?.price || product.price}
+            </p>
 
             <Link
               to={`/product/${product._id}`}
