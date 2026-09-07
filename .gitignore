@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Environment files and credentials
+.env
+.env.*
+!.env.example
+
+# Logs and local build output
+*.log
+dist/
+build/
+.DS_Store
